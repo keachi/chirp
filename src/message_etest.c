@@ -165,7 +165,7 @@ void
 echo_init_handler(ch_chirp_t* chirp)
 {
     A(chirp->_init == CH_CHIRP_MAGIC, "Not a ch_chirp_t*");
-    ch_chirp_register_recv_cb(chirp, ch_recv_echo_message_cb);
+    ch_chirp_register_recv_cb(chirp, ch_recv_echo_message_cb, "send");
 }
 
 static

@@ -1083,7 +1083,11 @@ ch_libchirp_init(void)
 // .. c:function::
 CH_EXPORT
 void
-ch_chirp_register_recv_cb(ch_chirp_t* chirp, ch_recv_cb_t recv_cb)
+ch_chirp_register_recv_cb(
+        ch_chirp_t* chirp,
+        ch_recv_cb_t recv_cb,
+        char* actor
+)
 //    :noindex:
 //
 //    see: :c:func:`ch_chirp_register_recv_cb`
@@ -1091,6 +1095,13 @@ ch_chirp_register_recv_cb(ch_chirp_t* chirp, ch_recv_cb_t recv_cb)
 // .. code-block:: cpp
 //
 {
+    A(chirp->_init == CH_CHIRP_MAGIC, "Not a ch_chirp_t*");
     ch_chirp_int_t* ichirp = chirp->_;
     ichirp->recv_cb = recv_cb;
+    L(
+        chirp,
+        "Registered callback function for actor: %s",
+        actor
+    );
+    // TODO register callback for specific actors
 }

@@ -363,12 +363,19 @@ ch_chirp_set_auto_stop_loop(ch_chirp_t* chirp);
 // .. c:function::
 CH_EXPORT
 void
-ch_chirp_register_recv_cb(ch_chirp_t* chirp, ch_recv_cb_t recv_cb);
+ch_chirp_register_recv_cb(
+        ch_chirp_t* chirp,
+        ch_recv_cb_t recv_cb,
+        char* actor
+);
 //
-//    Register a callback for receiving a message.
+//    Register a callback, that is called after receiving a message. For each
+//    actor a callback function can be registered.
 //
 //    :param ch_chirp_t* chirp: Pointer to a chirp object.
-//    :param ch_message_t* msg: The message which was received.
+//    :param ch_recv_cb_t* recv_cb: The callback, that will be called after
+//                                  receiving.
+//    :param char* actor: The actor, that sent the message.
 //
 // .. code-block:: cpp
 //
